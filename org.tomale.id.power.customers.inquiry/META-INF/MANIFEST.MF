@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Customers Inquiry
-Bundle-SymbolicName: org.tomale.id.customers.inquiry;singleton:=true
+Bundle-Name: Power Customers Inquiry
+Bundle-SymbolicName: org.tomale.id.power.customers.inquiry
 Bundle-Version: 1.0.0.0
-Bundle-Activator: org.tomale.id.customers.inquiry.Activator
+Bundle-Activator: org.tomale.id.power.customers.inquiry.Activator
 Bundle-Vendor: tomale.org
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime

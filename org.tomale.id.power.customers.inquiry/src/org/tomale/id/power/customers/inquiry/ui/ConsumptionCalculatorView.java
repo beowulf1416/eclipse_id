@@ -1,4 +1,4 @@
-package org.tomale.id.customers.inquiry.ui;
+package org.tomale.id.power.customers.inquiry.ui;
 
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.part.ViewPart;
