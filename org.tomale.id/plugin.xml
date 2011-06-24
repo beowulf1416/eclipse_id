@@ -90,5 +90,18 @@
          </toolbar>
       </menuContribution>
    </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            class="org.tomale.id.ui.preferences.GeneralPreferencesPage"
+            id="org.tomale.id.preferences.pages.general"
+            name="General">
+      </page>
+      <page
+            class="org.tomale.id.ui.preferences.ConnectionPreferencesPage"
+            id="org.tomale.id.preferences.pages.connections"
+            name="Connections">
+      </page>
+   </extension>
 
 </plugin>
