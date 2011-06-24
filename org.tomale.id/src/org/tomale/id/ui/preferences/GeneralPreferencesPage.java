@@ -8,6 +8,8 @@ import org.eclipse.ui.IWorkbenchPreferencePage;
 
 public class GeneralPreferencesPage extends PreferencePage implements
 		IWorkbenchPreferencePage {
+	public GeneralPreferencesPage() {
+	}
 
 	@Override
 	public void init(IWorkbench workbench) {
