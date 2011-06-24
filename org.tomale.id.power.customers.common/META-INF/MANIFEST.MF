@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Power Customers Common
+Bundle-SymbolicName: org.tomale.id.power.customers.common;singleton:=true
+Bundle-Version: 1.0.0.0
+Bundle-Activator: org.tomale.id.power.customers.common.Activator
+Bundle-Vendor: tomale.org
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ActivationPolicy: lazy

@@ -1,4 +1,4 @@
-package org.tomale.id.customers.common;
+package org.tomale.id.power.customers.common;
 
 public class Customer {
 
