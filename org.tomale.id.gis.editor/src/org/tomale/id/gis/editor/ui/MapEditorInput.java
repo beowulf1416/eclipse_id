@@ -3,6 +3,7 @@ package org.tomale.id.gis.editor.ui;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IPersistableElement;
+import org.tomale.id.gis.editor.Activator;
 
 public class MapEditorInput implements IEditorInput {
 
@@ -18,7 +19,8 @@ public class MapEditorInput implements IEditorInput {
 
 	@Override
 	public ImageDescriptor getImageDescriptor() {
-		return null;
+		return Activator.imageDescriptorFromPlugin("org.tomale.id.gis.editor", 
+					"icons/bullet_ball_glass_green.png");
 	}
 
 	@Override

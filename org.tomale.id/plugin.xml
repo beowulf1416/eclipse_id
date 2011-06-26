@@ -43,6 +43,11 @@
                   commandId="org.eclipse.ui.file.newQuickMenu"
                   style="push">
             </command>
+            <menu
+                  id="org.eclipse.ui.main.menu.file.open"
+                  label="Open"
+                  mnemonic="O">
+            </menu>
             <separator
                   name="org.tomale.id.separator1"
                   visible="true">
@@ -102,6 +107,13 @@
             id="org.tomale.id.preferences.pages.connections"
             name="Connections">
       </page>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <category
+            id="org.tomale.id.category.commands"
+            name="ID">
+      </category>
    </extension>
 
 </plugin>

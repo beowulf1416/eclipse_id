@@ -52,10 +52,10 @@ public class MapEditor extends EditorPart {
 	public void createPartControl(Composite parent) {
 		
 		_canvas = new Canvas(parent, SWT.NO_BACKGROUND);
-		
+		/*
 		_map = new MapImage();
 		_map.setBounds(parent.getBounds());
-
+		*/
 	}
 
 	@Override

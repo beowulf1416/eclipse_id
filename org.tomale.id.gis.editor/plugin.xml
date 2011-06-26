@@ -37,10 +37,21 @@
             </command>
          </toolbar>
       </menuContribution>
+      <menuContribution
+            allPopups="false"
+            locationURI="menu:org.eclipse.ui.main.menu.file.open">
+         <command
+               commandId="org.tomale.id.gis.editor.command.openmapeditor"
+               helpContextId="org.tomale.id.gis.editor.command.openmapeditor.help"
+               label="Map Editor"
+               style="push">
+         </command>
+      </menuContribution>
    </extension>
    <extension
          point="org.eclipse.ui.editors">
       <editor
+            class="org.tomale.id.gis.editor.ui.MapEditor"
             default="false"
             id="org.tomale.id.gis.editor.map"
             name="Map Editor">
@@ -91,6 +102,12 @@
             id="org.tomale.id.gis.editor.command.togglereadonly"
             name="Toggle readonly">
       </command>
+      <command
+            category="org.tomale.id.gis.editor.category.commands"
+            helpContextId="org.tomale.id.gis.editor.command.openmapeditor.help"
+            id="org.tomale.id.gis.editor.command.openmapeditor"
+            name="Open Map Editor">
+      </command>
    </extension>
    <extension
          point="org.eclipse.ui.handlers">
@@ -113,6 +130,11 @@
             class="org.tomale.id.gis.editor.ui.handlers.ToggleReadonlyLayerHandler"
             commandId="org.tomale.id.gis.editor.command.togglereadonly"
             helpContextId="org.tomale.id.gis.editor.command.togglereadonly.help">
+      </handler>
+      <handler
+            class="org.tomale.id.gis.editor.ui.handlers.OpenMapEditorHandler"
+            commandId="org.tomale.id.gis.editor.command.openmapeditor"
+            helpContextId="org.tomale.id.gis.editor.command.openmapeditor.help">
       </handler>
    </extension>
    <extension
