@@ -39,11 +39,19 @@
       </menuContribution>
       <menuContribution
             allPopups="false"
-            locationURI="menu:org.eclipse.ui.main.menu.file.open">
+            locationURI="menu:org.eclipse.ui.main.menu.window.editors">
          <command
                commandId="org.tomale.id.gis.editor.command.openmapeditor"
                helpContextId="org.tomale.id.gis.editor.command.openmapeditor.help"
                label="Map Editor"
+               style="push">
+         </command>
+      </menuContribution>
+      <menuContribution
+            allPopups="false"
+            locationURI="menu:org.eclipse.ui.main.menu.window.views">
+         <command
+               commandId="org.tomale.id.gis.editor.command.showmaplayersview"
                style="push">
          </command>
       </menuContribution>
@@ -108,6 +116,11 @@
             id="org.tomale.id.gis.editor.command.openmapeditor"
             name="Open Map Editor">
       </command>
+      <command
+            category="org.tomale.id.gis.editor.category.commands"
+            id="org.tomale.id.gis.editor.command.showmaplayersview"
+            name="Map Layers">
+      </command>
    </extension>
    <extension
          point="org.eclipse.ui.handlers">
@@ -135,6 +148,10 @@
             class="org.tomale.id.gis.editor.ui.handlers.OpenMapEditorHandler"
             commandId="org.tomale.id.gis.editor.command.openmapeditor"
             helpContextId="org.tomale.id.gis.editor.command.openmapeditor.help">
+      </handler>
+      <handler
+            class="org.tomale.id.gis.editor.ui.handlers.ShowMapLayersViewHandler"
+            commandId="org.tomale.id.gis.editor.command.showmaplayersview">
       </handler>
    </extension>
    <extension

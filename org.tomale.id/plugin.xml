@@ -74,6 +74,19 @@
                   style="push">
             </command>
          </menu>
+         <menu
+               label="Window"
+               mnemonic="W">
+            <menu
+                  id="org.eclipse.ui.main.menu.window.editors"
+                  label="Editors"
+                  mnemonic="E">
+            </menu>
+            <menu
+                  id="org.eclipse.ui.main.menu.window.views"
+                  label="Views">
+            </menu>
+         </menu>
       </menuContribution>
       <menuContribution
             allPopups="false"
