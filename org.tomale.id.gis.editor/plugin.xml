@@ -115,5 +115,18 @@
             helpContextId="org.tomale.id.gis.editor.command.togglereadonly.help">
       </handler>
    </extension>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <category
+            id="org.tomale.id.gis.editor.category.wizard.new"
+            name="GIS">
+      </category>
+      <wizard
+            category="org.tomale.id.gis.editor.category.wizard.new"
+            class="org.tomale.id.gis.editor.wizard.NewMapEditorWizard"
+            id="org.tomale.id.gis.editor.wizard.new.editor"
+            name="Map Editor">
+      </wizard>
+   </extension>
 
 </plugin>
