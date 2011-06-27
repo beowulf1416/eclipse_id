@@ -32,7 +32,9 @@ public class MapEditor extends EditorPart {
 	@Override
 	public void init(IEditorSite site, IEditorInput input)
 			throws PartInitException {
-		// TODO Auto-generated method stub
+		
+		setSite(site);
+		setInput(input);
 
 	}
 
