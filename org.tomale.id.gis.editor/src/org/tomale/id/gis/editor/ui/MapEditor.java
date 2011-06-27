@@ -2,12 +2,21 @@ package org.tomale.id.gis.editor.ui;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.ControlEvent;
+import org.eclipse.swt.events.ControlListener;
+import org.eclipse.swt.events.PaintEvent;
+import org.eclipse.swt.events.PaintListener;
+import org.eclipse.swt.graphics.GC;
+import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Canvas;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Event;
+import org.eclipse.swt.widgets.Listener;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.part.EditorPart;
+import org.tomale.id.gis.editor.ui.internal.MapContext;
 import org.tomale.id.gis.editor.ui.internal.MapImage;
 
 public class MapEditor extends EditorPart {
@@ -15,6 +24,8 @@ public class MapEditor extends EditorPart {
 	public final static String EDITOR_ID = "org.tomale.id.gis.editor.map";
 	
 	MapImage _map;
+	MapContext _context;
+	
 	Canvas _canvas;
 	
 	@Override
@@ -52,12 +63,42 @@ public class MapEditor extends EditorPart {
 
 	@Override
 	public void createPartControl(Composite parent) {
+		parent.setLayout(new FillLayout());
 		
 		_canvas = new Canvas(parent, SWT.NO_BACKGROUND);
-		/*
+		_canvas.addControlListener(new ControlListener() {
+			
+			@Override
+			public void controlResized(ControlEvent e) {
+				resize();
+			}
+			
+			@Override
+			public void controlMoved(ControlEvent e) {
+				// do nothing
+			}
+		});
+		
+		_canvas.addPaintListener(new PaintListener() {
+			
+			@Override
+			public void paintControl(PaintEvent e) {
+				paint(e.gc);
+			}
+		});
+		
 		_map = new MapImage();
 		_map.setBounds(parent.getBounds());
-		*/
+	}
+	
+	public void resize(){
+		_map.setBounds(_canvas.getClientArea());
+	}
+	
+	public void paint(GC gc){
+		
+		// draw background color
+		
 	}
 
 	@Override
