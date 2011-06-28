@@ -1,5 +1,7 @@
 package org.tomale.id.gis.editor.ui;
 
+import java.awt.image.BufferedImage;
+
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ControlEvent;
@@ -7,6 +9,7 @@ import org.eclipse.swt.events.ControlListener;
 import org.eclipse.swt.events.PaintEvent;
 import org.eclipse.swt.events.PaintListener;
 import org.eclipse.swt.graphics.GC;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Canvas;
 import org.eclipse.swt.widgets.Composite;
@@ -16,6 +19,7 @@ import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.part.EditorPart;
+import org.tomale.id.gis.editor.ui.internal.ImageConverter;
 import org.tomale.id.gis.editor.ui.internal.MapContext;
 import org.tomale.id.gis.editor.ui.internal.MapImage;
 
@@ -27,6 +31,7 @@ public class MapEditor extends EditorPart {
 	MapContext _context;
 	
 	Canvas _canvas;
+	Image swtImage;
 	
 	@Override
 	public void doSave(IProgressMonitor monitor) {
@@ -65,7 +70,8 @@ public class MapEditor extends EditorPart {
 	public void createPartControl(Composite parent) {
 		parent.setLayout(new FillLayout());
 		
-		_canvas = new Canvas(parent, SWT.NO_BACKGROUND);
+		_canvas = new Canvas(parent, SWT.NO_BACKGROUND | SWT.BORDER | 
+				SWT.V_SCROLL | SWT.H_SCROLL);
 		_canvas.addControlListener(new ControlListener() {
 			
 			@Override
@@ -98,6 +104,9 @@ public class MapEditor extends EditorPart {
 	public void paint(GC gc){
 		
 		// draw background color
+		BufferedImage bufferedImage = _map.getImage();
+		swtImage = new Image(gc.getDevice(), ImageConverter.convertToSWT(bufferedImage));
+		gc.drawImage(swtImage, 0, 0);
 		
 	}
 
