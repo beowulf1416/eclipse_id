@@ -18,6 +18,7 @@
             <command
                   commandId="org.tomale.id.gis.editor.command.layer.add"
                   helpContextId="org.tomale.id.gis.editor.command.layer.add.help"
+                  label="Add Layer"
                   style="push">
             </command>
             <command
@@ -52,6 +53,7 @@
             locationURI="menu:org.eclipse.ui.main.menu.window.views">
          <command
                commandId="org.tomale.id.gis.editor.command.showmaplayersview"
+               label="Map Layers"
                style="push">
          </command>
       </menuContribution>
