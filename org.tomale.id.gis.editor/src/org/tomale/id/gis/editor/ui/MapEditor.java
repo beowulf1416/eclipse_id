@@ -91,6 +91,7 @@ public class MapEditor extends EditorPart {
 			public void paintControl(PaintEvent e) {
 				paint(e.gc);
 			}
+			
 		});
 		
 		_map = new MapImage();

@@ -3,6 +3,7 @@ package org.tomale.id.gis.editor.ui.internal;
 import java.awt.geom.AffineTransform;
 
 import org.eclipse.swt.graphics.Point;
+import org.eclipse.swt.graphics.Rectangle;
 
 public class MapContext {
 
@@ -11,12 +12,22 @@ public class MapContext {
 	
 	AffineTransform _transform;
 	
-	public Point getCenterAt(){
+	public MapContext(final int scale, final Point center){
+		_scale = scale;
+		_centerAt = center;
+	}
+	
+	public MapContext(){
+		_scale = 1;
+		_centerAt = new Point(0,0);
+	}
+	
+	public Point getCenter(){
 		return _centerAt;
 	}
 	
-	public void setCenterAt(final Point centerAt){
-		_centerAt = centerAt;
+	public void setCenter(final Point center){
+		_centerAt = center;
 	}
 	
 	public int getScale(){
