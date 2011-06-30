@@ -23,6 +23,10 @@ public class MapImage {
 	
 	boolean _requireRebuild = false;
 	
+	public MapImage(){
+		_context = new MapContext();
+	}
+	
 	public MapContext getContext(){
 		return _context;
 	}

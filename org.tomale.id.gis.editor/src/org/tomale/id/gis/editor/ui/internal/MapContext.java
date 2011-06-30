@@ -7,27 +7,27 @@ import org.eclipse.swt.graphics.Rectangle;
 
 public class MapContext {
 
-	Point _centerAt;
+	Point _center;
 	int _scale;
 	
 	AffineTransform _transform;
 	
 	public MapContext(final int scale, final Point center){
 		_scale = scale;
-		_centerAt = center;
+		_center = center;
 	}
 	
 	public MapContext(){
 		_scale = 1;
-		_centerAt = new Point(0,0);
+		_center = new Point(0,0);
 	}
 	
 	public Point getCenter(){
-		return _centerAt;
+		return _center;
 	}
 	
 	public void setCenter(final Point center){
-		_centerAt = center;
+		_center = center;
 	}
 	
 	public int getScale(){

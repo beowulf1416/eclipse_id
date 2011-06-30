@@ -3,18 +3,21 @@ package org.tomale.id.gis.editor.ui;
 import java.awt.image.BufferedImage;
 
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.jface.action.ToolBarContributionItem;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ControlEvent;
 import org.eclipse.swt.events.ControlListener;
 import org.eclipse.swt.events.PaintEvent;
 import org.eclipse.swt.events.PaintListener;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Canvas;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Event;
-import org.eclipse.swt.widgets.Listener;
+import org.eclipse.swt.widgets.ScrollBar;
+import org.eclipse.swt.widgets.ToolBar;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.PartInitException;
@@ -32,6 +35,10 @@ public class MapEditor extends EditorPart {
 	
 	Canvas _canvas;
 	Image swtImage;
+	
+	public MapEditor(){
+		_map = new MapImage();
+	}
 	
 	@Override
 	public void doSave(IProgressMonitor monitor) {
@@ -69,9 +76,50 @@ public class MapEditor extends EditorPart {
 	@Override
 	public void createPartControl(Composite parent) {
 		parent.setLayout(new FillLayout());
+
+		ToolBar tb = new ToolBar(parent, SWT.HORIZONTAL | SWT.FLAT);
 		
 		_canvas = new Canvas(parent, SWT.NO_BACKGROUND | SWT.BORDER | 
 				SWT.V_SCROLL | SWT.H_SCROLL);
+		
+		ScrollBar hscroll = _canvas.getHorizontalBar();
+		hscroll.setMinimum(0);
+		hscroll.setMaximum(100);
+		hscroll.setSelection(50);
+		hscroll.addSelectionListener(new SelectionListener() {
+			
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void widgetDefaultSelected(SelectionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		
+		ScrollBar vscroll = _canvas.getVerticalBar();
+		vscroll.setMinimum(0);
+		vscroll.setMaximum(100);
+		vscroll.setSelection(50);
+		vscroll.addSelectionListener(new SelectionListener() {
+			
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void widgetDefaultSelected(SelectionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		
 		_canvas.addControlListener(new ControlListener() {
 			
 			@Override
@@ -94,7 +142,6 @@ public class MapEditor extends EditorPart {
 			
 		});
 		
-		_map = new MapImage();
 		_map.setBounds(parent.getBounds());
 	}
 	
@@ -110,11 +157,14 @@ public class MapEditor extends EditorPart {
 		gc.drawImage(swtImage, 0, 0);
 		
 	}
+	
+	public void scroll(){
+		
+	}
 
 	@Override
 	public void setFocus() {
-		// TODO Auto-generated method stub
-
+		_canvas.setFocus();
 	}
 
 }

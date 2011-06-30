@@ -7,7 +7,13 @@
             allPopups="false"
             locationURI="toolbar:org.tomale.id.gis.editor.map">
          <toolbar
-               id="org.tomale.id.gis.editor.map.toolbar">
+               id="org.tomale.id.gis.editor.map.toolbar"
+               label="here">
+            <command
+                  commandId="org.tomale.id.gis.editor.command.showmaplayersview"
+                  label="Show Map Layers"
+                  style="push">
+            </command>
          </toolbar>
       </menuContribution>
       <menuContribution
@@ -168,6 +174,20 @@
             id="org.tomale.id.gis.editor.wizard.new.editor"
             name="Map Editor">
       </wizard>
+   </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            class="org.tomale.id.gis.editor.preferences.GeneralPreferencePages"
+            id="org.tomale.id.gis.editor.page.general"
+            name="General">
+      </page>
+      <page
+            category="org.tomale.id.gis.editor.page.general"
+            class="org.tomale.id.gis.editor.preferences.LayerPreferencePage"
+            id="org.tomale.id.gis.editor.page.layers"
+            name="Layers">
+      </page>
    </extension>
 
 </plugin>
