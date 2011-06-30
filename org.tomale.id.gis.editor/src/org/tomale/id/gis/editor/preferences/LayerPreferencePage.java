@@ -1,5 +1,8 @@
 package org.tomale.id.gis.editor.preferences;
 
+import org.eclipse.core.runtime.Platform;
+import org.eclipse.core.runtime.preferences.IEclipsePreferences;
+import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferencePage;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
@@ -77,6 +80,14 @@ public class LayerPreferencePage extends PreferencePage {
 		return container;
 	}
 	
+	@Override
+	public boolean performOk() {
+
+		IPreferenceStore store = getPreferenceStore();
+		
+		return super.performOk();
+	}
+
 	public class LayerContentProvider implements IStructuredContentProvider {
 
 		@Override

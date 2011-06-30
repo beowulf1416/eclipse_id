@@ -1,5 +1,6 @@
 package org.tomale.id.gis.editor.preferences;
 
+import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferencePage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
@@ -67,6 +68,21 @@ public class GeneralPreferencePages extends PreferencePage {
 		ColorDialog dlg = new ColorDialog(getShell());
 		RGB rgb = dlg.open();
 		canvas.setBackground(new Color(getShell().getDisplay(), rgb));
+		
+	}
+
+	@Override
+	public boolean performOk() {
+
+		try {
+			IPreferenceStore store = getPreferenceStore();
+			return super.performOk();
+		} catch(Exception e){
+			
+			setErrorMessage(e.getLocalizedMessage());
+			
+			return false;
+		}
 		
 	}
 }
