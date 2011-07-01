@@ -1,14 +1,19 @@
 package org.tomale.id;
 
+import java.util.HashMap;
+
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
+import org.tomale.id.dal.ConnectionContext;
 
 /**
  * The activator class controls the plug-in life cycle
  */
 public class Activator extends AbstractUIPlugin {
 
+	HashMap<String, ConnectionContext> _connections = new HashMap<String, ConnectionContext>();
+	
 	// The plug-in ID
 	public static final String PLUGIN_ID = "org.tomale.id"; //$NON-NLS-1$
 
@@ -57,5 +62,9 @@ public class Activator extends AbstractUIPlugin {
 	 */
 	public static ImageDescriptor getImageDescriptor(String path) {
 		return imageDescriptorFromPlugin(PLUGIN_ID, path);
+	}
+	
+	public HashMap<String, ConnectionContext> getConnections(){
+		return _connections;
 	}
 }

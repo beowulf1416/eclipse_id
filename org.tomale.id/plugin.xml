@@ -85,6 +85,12 @@
             <menu
                   id="org.eclipse.ui.main.menu.window.views"
                   label="Views">
+               <command
+                     commandId="org.tomale.id.command.show.connections"
+                     icon="icons/view16/database_obj.gif"
+                     label="Connections"
+                     style="push">
+               </command>
             </menu>
             <separator
                   name="org.tomale.id.separator1"
@@ -115,6 +121,17 @@
             </command>
          </toolbar>
       </menuContribution>
+      <menuContribution
+            allPopups="false"
+            locationURI="toolbar:org.tomale.id.view.connections">
+         <command
+               commandId="org.tomale.id.command.connection.add"
+               icon="icons/etool16/datastore_wiz.gif"
+               label="Add connection"
+               style="push"
+               tooltip="Add connection">
+         </command>
+      </menuContribution>
    </extension>
    <extension
          point="org.eclipse.ui.preferencePages">
@@ -124,6 +141,7 @@
             name="General">
       </page>
       <page
+            category="org.tomale.id.preferences.pages.general"
             class="org.tomale.id.ui.preferences.ConnectionPreferencesPage"
             id="org.tomale.id.preferences.pages.connections"
             name="Connections">
@@ -135,6 +153,42 @@
             id="org.tomale.id.category.commands"
             name="ID">
       </category>
+      <command
+            category="org.tomale.id.category.commands"
+            defaultHandler="org.tomale.id.handlers.ShowConnectionsViewHandler"
+            helpContextId="org.tomale.id.command.show.connections.help"
+            id="org.tomale.id.command.show.connections"
+            name="Connections">
+      </command>
+      <command
+            category="org.tomale.id.category.commands"
+            defaultHandler="org.tomale.id.handlers.AddConnectionHandler"
+            helpContextId="org.tomale.id.command.connection.add.help"
+            id="org.tomale.id.command.connection.add"
+            name="Add connection">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views">
+      <category
+            id="org.tomale.id.category.view"
+            name="General">
+      </category>
+      <view
+            category="org.tomale.id.category.view"
+            class="org.tomale.id.ui.ConnectionsView"
+            icon="icons/view16/database_obj.gif"
+            id="org.tomale.id.view.connections"
+            name="Connections"
+            restorable="true">
+      </view>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            commandId="org.tomale.id.command.connection.add"
+            helpContextId="org.tomale.id.command.connection.add.help">
+      </handler>
    </extension>
 
 </plugin>

@@ -27,15 +27,13 @@ public class ConnectionPreferencesPage extends PreferencePage
 	@Override
 	protected Control createContents(Composite parent) {
 		
-		parent.setLayout(new FillLayout());
-		
 		Composite container = new Composite(parent, SWT.NONE);
 		container.setLayout(new GridLayout());
 		
 		_cns = new TableViewer(container);
 		_cns.setLabelProvider(new ConnectionLabelProvider());
 		
-		return null;
+		return container;
 	}
 	
 	public class ConnectionLabelProvider extends LabelProvider {

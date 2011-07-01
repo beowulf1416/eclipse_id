@@ -1,6 +1,9 @@
 package org.tomale.id.ui.preferences;
 
 import org.eclipse.jface.preference.PreferencePage;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.layout.FillLayout;
+import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.IWorkbench;
@@ -19,8 +22,11 @@ public class GeneralPreferencesPage extends PreferencePage implements
 
 	@Override
 	protected Control createContents(Composite parent) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		Composite container = new Composite(parent, SWT.NONE);
+		container.setLayout(new GridLayout());
+		
+		return container;
 	}
 
 }
