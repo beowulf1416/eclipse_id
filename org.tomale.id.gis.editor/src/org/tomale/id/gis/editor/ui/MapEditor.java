@@ -3,6 +3,8 @@ package org.tomale.id.gis.editor.ui;
 import java.awt.image.BufferedImage;
 
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.jface.action.Action;
+import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.action.ToolBarContributionItem;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ControlEvent;
@@ -35,6 +37,8 @@ public class MapEditor extends EditorPart {
 	
 	Canvas _canvas;
 	Image swtImage;
+	
+	Action _showLayers;
 	
 	public MapEditor(){
 		_map = new MapImage();
@@ -72,13 +76,28 @@ public class MapEditor extends EditorPart {
 		// TODO Auto-generated method stub
 		return false;
 	}
+	
+	public void createActions(){
+		
+		_showLayers = new Action() {
+			public void run(){
+				// TODO
+			}
+		};
+		
+	}
+	
+	public void createToolbar(){
+		
+		IToolBarManager mgr = getEditorSite().getActionBars().getToolBarManager();
+		mgr.add(_showLayers);
+		
+	}
 
 	@Override
 	public void createPartControl(Composite parent) {
 		parent.setLayout(new FillLayout());
 
-		ToolBar tb = new ToolBar(parent, SWT.HORIZONTAL | SWT.FLAT);
-		
 		_canvas = new Canvas(parent, SWT.NO_BACKGROUND | SWT.BORDER | 
 				SWT.V_SCROLL | SWT.H_SCROLL);
 		
@@ -143,6 +162,11 @@ public class MapEditor extends EditorPart {
 		});
 		
 		_map.setBounds(parent.getBounds());
+		
+		
+//		createActions();
+//		createToolbar();
+		
 	}
 	
 	public void resize(){

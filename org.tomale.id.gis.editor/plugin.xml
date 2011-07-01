@@ -5,47 +5,6 @@
          point="org.eclipse.ui.menus">
       <menuContribution
             allPopups="false"
-            locationURI="toolbar:org.tomale.id.gis.editor.map">
-         <toolbar
-               id="org.tomale.id.gis.editor.map.toolbar"
-               label="here">
-            <command
-                  commandId="org.tomale.id.gis.editor.command.showmaplayersview"
-                  label="Show Map Layers"
-                  style="push">
-            </command>
-         </toolbar>
-      </menuContribution>
-      <menuContribution
-            allPopups="false"
-            locationURI="toolbar:org.tomale.id.gis.editor.view.layers">
-         <toolbar
-               id="org.tomale.id.gis.editor.view.layers.toolbar">
-            <command
-                  commandId="org.tomale.id.gis.editor.command.layer.add"
-                  helpContextId="org.tomale.id.gis.editor.command.layer.add.help"
-                  label="Add Layer"
-                  style="push">
-            </command>
-            <command
-                  commandId="org.tomale.id.gis.editor.command.layer.remove"
-                  helpContextId="org.tomale.id.gis.editor.command.layer.remove.help"
-                  style="push">
-            </command>
-            <command
-                  commandId="org.tomale.id.gis.editor.command.layer.togglevisible"
-                  helpContextId="org.tomale.id.gis.editor.command.layer.togglevisible.help"
-                  style="push">
-            </command>
-            <command
-                  commandId="org.tomale.id.gis.editor.command.togglereadonly"
-                  helpContextId="org.tomale.id.gis.editor.command.togglereadonly.help"
-                  style="push">
-            </command>
-         </toolbar>
-      </menuContribution>
-      <menuContribution
-            allPopups="false"
             locationURI="menu:org.eclipse.ui.main.menu.window.editors">
          <command
                commandId="org.tomale.id.gis.editor.command.openmapeditor"
@@ -62,6 +21,44 @@
                label="Map Layers"
                style="push">
          </command>
+      </menuContribution>
+      <menuContribution
+            allPopups="false"
+            locationURI="toolbar:org.tomale.id.gis.editor.view.layers">
+         <command
+               commandId="org.tomale.id.gis.editor.command.layer.add"
+               icon="icons/etool16/addlayer_wiz.gif"
+               style="push"
+               tooltip="Add Layer">
+         </command>
+      </menuContribution>
+      <menuContribution
+            allPopups="false"
+            locationURI="menu:org.tomale.id.gis.editor.view.layers">
+         <command
+               commandId="org.tomale.id.gis.editor.command.preferences"
+               style="push">
+         </command>
+      </menuContribution>
+      <menuContribution
+            allPopups="false"
+            locationURI="toolbar:org.eclipse.ui.main.toolbar">
+         <toolbar
+               id="org.tomale.id.gis.editor.toolbar">
+            <command
+                  commandId="org.tomale.id.gis.editor.command.showmaplayersview"
+                  helpContextId="org.tomale.id.gis.editor.command.showmaplayersview.help"
+                  icon="icons/view16/layer_view.gif"
+                  style="push"
+                  tooltip="Show map layers">
+               <visibleWhen
+                     checkEnabled="false">
+                  <reference
+                        definitionId="org.tomale.id.gis.editor.mapeditoractive">
+                  </reference>
+               </visibleWhen>
+            </command>
+         </toolbar>
       </menuContribution>
    </extension>
    <extension
@@ -83,6 +80,7 @@
             allowMultiple="false"
             category="org.tomale.id.gis.editor.category.view"
             class="org.tomale.id.gis.editor.ui.LayersView"
+            icon="icons/view16/layer_view.gif"
             id="org.tomale.id.gis.editor.view.layers"
             name="Layers"
             restorable="true">
@@ -129,6 +127,12 @@
             id="org.tomale.id.gis.editor.command.showmaplayersview"
             name="Map Layers">
       </command>
+      <command
+            category="org.tomale.id.gis.editor.category.commands"
+            helpContextId="org.tomale.id.gis.editor.command.preferences.help"
+            id="org.tomale.id.gis.editor.command.preferences"
+            name="Settings">
+      </command>
    </extension>
    <extension
          point="org.eclipse.ui.handlers">
@@ -159,7 +163,8 @@
       </handler>
       <handler
             class="org.tomale.id.gis.editor.ui.handlers.ShowMapLayersViewHandler"
-            commandId="org.tomale.id.gis.editor.command.showmaplayersview">
+            commandId="org.tomale.id.gis.editor.command.showmaplayersview"
+            helpContextId="org.tomale.id.gis.editor.command.showmaplayersview.help">
       </handler>
    </extension>
    <extension
@@ -188,6 +193,18 @@
             id="org.tomale.id.gis.editor.page.layers"
             name="Layers">
       </page>
+   </extension>
+   <extension
+         point="org.eclipse.core.expressions.definitions">
+      <definition
+            id="org.tomale.id.gis.editor.mapeditoractive">
+         <with
+               variable="activeEditorId">
+            <equals
+                  value="org.tomale.id.gis.editor.map">
+            </equals>
+         </with>
+      </definition>
    </extension>
 
 </plugin>
