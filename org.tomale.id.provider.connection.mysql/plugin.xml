@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.tomale.id.providers.connection">
+      <provider
+            class="org.tomale.id.provider.connection.mysql.MySQLConnectionProvider"
+            name="MySQL Connection Provider">
+      </provider>
+   </extension>
+
+</plugin>
