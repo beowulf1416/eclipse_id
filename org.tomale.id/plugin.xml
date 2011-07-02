@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
+   <extension-point id="org.tomale.id.providers.connection" name="Connection Provider" schema="schema/org.tomale.id.providers.connection.exsd"/>
 
    <extension
          id="application"
@@ -189,6 +190,18 @@
             commandId="org.tomale.id.command.connection.add"
             helpContextId="org.tomale.id.command.connection.add.help">
       </handler>
+   </extension>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <category
+            id="org.tomale.id.category.data"
+            name="Data">
+      </category>
+      <wizard
+            class="org.tomale.id.wizard.ConnectionWizard"
+            id="org.tomale.id.wizard.provider.connection"
+            name="Connection Provider">
+      </wizard>
    </extension>
 
 </plugin>
