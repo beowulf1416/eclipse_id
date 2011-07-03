@@ -1,5 +1,6 @@
 package org.tomale.id.wizard;
 
+import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
@@ -11,6 +12,7 @@ import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.ListViewer;
 import org.eclipse.jface.viewers.Viewer;
+import org.tomale.id.Activator;
 
 public class ConnectionProviderWizardPage extends WizardPage {
 
@@ -41,6 +43,9 @@ public class ConnectionProviderWizardPage extends WizardPage {
 		_lstvwr.setLabelProvider(new ConnectionLabelProvider());
 		
 		List lstProvider = _lstvwr.getList();
+		
+		_lstvwr.setInput(Activator.getConnectionProviders());
+		
 	}
 	
 	public class ConnectionContentProvider implements IStructuredContentProvider {
@@ -59,8 +64,7 @@ public class ConnectionProviderWizardPage extends WizardPage {
 
 		@Override
 		public Object[] getElements(Object inputElement) {
-			// TODO Auto-generated method stub
-			return null;
+			return (IConfigurationElement[]) inputElement;
 		}
 		
 	}
@@ -76,8 +80,7 @@ public class ConnectionProviderWizardPage extends WizardPage {
 
 		@Override
 		public String getText(Object element) {
-			// TODO Auto-generated method stub
-			return null;
+			return ((IConfigurationElement) element).getAttribute("name");
 		}
 		
 	}

@@ -41,7 +41,7 @@
                label="File"
                mnemonic="F">
             <command
-                  commandId="org.eclipse.ui.file.newQuickMenu"
+                  commandId="org.eclipse.ui.newWizard"
                   style="push">
             </command>
             <menu
@@ -109,7 +109,7 @@
          <toolbar
                id="org.tomale.id.ui.toolbar.main">
             <command
-                  commandId="org.eclipse.ui.file.newQuickMenu"
+                  commandId="org.eclipse.ui.newWizard"
                   style="push">
             </command>
             <command
@@ -198,10 +198,19 @@
             name="Data">
       </category>
       <wizard
+            category="org.tomale.id.category.data"
             class="org.tomale.id.wizard.ConnectionWizard"
+            icon="icons/etool16/datastore_wiz.gif"
             id="org.tomale.id.wizard.provider.connection"
             name="Connection Provider">
       </wizard>
+   </extension>
+   <extension
+         point="org.tomale.id.providers.connection">
+      <provider
+            class="org.tomale.id.provider.connection.file.FileConnectionProvider"
+            name="File">
+      </provider>
    </extension>
 
 </plugin>

@@ -2,6 +2,10 @@ package org.tomale.id;
 
 import java.util.HashMap;
 
+import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.core.runtime.IExtensionRegistry;
+import org.eclipse.core.runtime.IPluginRegistry;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
@@ -66,5 +70,13 @@ public class Activator extends AbstractUIPlugin {
 	
 	public HashMap<String, ConnectionContext> getConnections(){
 		return _connections;
+	}
+	
+	public static IConfigurationElement[] getConnectionProviders(){
+		
+		IExtensionRegistry registry = Platform.getExtensionRegistry();
+		IConfigurationElement[] elements = registry.getConfigurationElementsFor("org.tomale.id.providers.connection");
+		return elements;
+		
 	}
 }
