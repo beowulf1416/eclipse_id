@@ -124,7 +124,7 @@
       </menuContribution>
       <menuContribution
             allPopups="false"
-            locationURI="toolbar:org.tomale.id.view.connections">
+            locationURI="toolbar:org.tomale.id.ui.view.connections">
          <command
                commandId="org.tomale.id.command.connection.add"
                icon="icons/etool16/datastore_wiz.gif"
@@ -177,9 +177,9 @@
       </category>
       <view
             category="org.tomale.id.category.view"
-            class="org.tomale.id.ui.ConnectionsView"
+            class="org.tomale.id.ui.views.ConnectionsView"
             icon="icons/view16/database_obj.gif"
-            id="org.tomale.id.view.connections"
+            id="org.tomale.id.ui.view.connections"
             name="Connections"
             restorable="true">
       </view>

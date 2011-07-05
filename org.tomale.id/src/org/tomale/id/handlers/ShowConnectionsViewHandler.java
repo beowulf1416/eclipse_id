@@ -6,7 +6,7 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.IHandler;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.handlers.HandlerUtil;
-import org.tomale.id.ui.ConnectionsView;
+import org.tomale.id.ui.views.ConnectionsView;
 
 public class ShowConnectionsViewHandler extends AbstractHandler implements
 		IHandler {
