@@ -2,21 +2,25 @@ package org.tomale.id.wizard;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
-import org.eclipse.jface.wizard.IWizardPage;
-import org.eclipse.jface.wizard.WizardPage;
-import org.eclipse.swt.SWT;
-import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.events.SelectionListener;
-import org.eclipse.swt.graphics.Image;
-import org.eclipse.swt.layout.FillLayout;
-import org.eclipse.swt.widgets.List;
 import org.eclipse.jface.viewers.BaseLabelProvider;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.ListViewer;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.jface.wizard.WizardPage;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.ModifyEvent;
+import org.eclipse.swt.events.ModifyListener;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.List;
+import org.eclipse.swt.widgets.Text;
 import org.tomale.id.Activator;
 import org.tomale.id.dal.IConnectionProvider;
 
@@ -25,6 +29,7 @@ public class ConnectionProviderWizardPage extends WizardPage {
 	ListViewer _lstvwr;
 	
 	WizardPage _page;
+	private Text txtName;
 	
 	/**
 	 * Create the wizard.
@@ -44,51 +49,56 @@ public class ConnectionProviderWizardPage extends WizardPage {
 		Composite container = new Composite(parent, SWT.NULL);
 
 		setControl(container);
-		container.setLayout(new FillLayout(SWT.HORIZONTAL));
+		container.setLayout(new GridLayout(2, false));
+		
+		Label lblName = new Label(container, SWT.NONE);
+		lblName.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
+		lblName.setText("Name");
+		
+		txtName = new Text(container, SWT.BORDER);
+		txtName.addModifyListener(new ModifyListener() {
+			public void modifyText(ModifyEvent e) {
+				setPageComplete(!txtName.getText().isEmpty() && !_lstvwr.getSelection().isEmpty());
+			}
+		});
+		txtName.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
 		
 		_lstvwr = new ListViewer(container, SWT.BORDER | SWT.V_SCROLL);
 		_lstvwr.setContentProvider(new ConnectionContentProvider());
 		_lstvwr.setLabelProvider(new ConnectionLabelProvider());
 		
 		List lstProvider = _lstvwr.getList();
-		lstProvider.setFocus();
+		lstProvider.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				setPageComplete(!txtName.getText().isEmpty() && !_lstvwr.getSelection().isEmpty());
+			}
+		});
+		lstProvider.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1));
 
 		_lstvwr.setInput(Activator.getConnectionProviders());
-
-		setPageComplete(!_lstvwr.getSelection().isEmpty());
+		
+		txtName.setFocus();
 	}
-
-	@Override
-	public boolean isPageComplete() {
-		return !_lstvwr.getSelection().isEmpty();
-	}
-
-	@Override
-	public IWizardPage getNextPage() {
+	
+	public IConnectionProvider getSelectedProvider(){
 		
 		if(!_lstvwr.getSelection().isEmpty()){
-			
 			StructuredSelection selection = (StructuredSelection) _lstvwr.getSelection();
 			IConfigurationElement element = (IConfigurationElement) selection.getFirstElement();
 			try {
 				Object o = element.createExecutableExtension("class");
-				if(o instanceof IConnectionProvider){
+				if(o != null){
 					IConnectionProvider provider = (IConnectionProvider) o;
-					_page = provider.getWizardPage();
-				
-					((ConnectionWizard) getWizard()).addConnectionWizardPage(_page);
+					return provider;
 				}
-			} catch (CoreException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			}catch(CoreException e){
+				setErrorMessage(e.getMessage());
 			}
-			
 		}
+		return null;
 		
-		return super.getNextPage();
 	}
-
-
 
 	public class ConnectionContentProvider implements IStructuredContentProvider {
 

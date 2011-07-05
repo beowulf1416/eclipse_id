@@ -1,21 +1,13 @@
 package org.tomale.id.provider.connection.file;
 
-import org.eclipse.jface.wizard.WizardPage;
+import org.eclipse.jface.wizard.IWizard;
 import org.tomale.id.dal.IConnectionProvider;
-import org.tomale.id.wizard.FileConnectionProviderWizardPage;
+import org.tomale.id.wizard.FileConnectionWizard;
 
 public class FileConnectionProvider implements IConnectionProvider {
 
-	FileConnectionProviderWizardPage _page;
+	FileConnectionWizard wizard;
 	
-	@Override
-	public WizardPage getWizardPage() {
-		if(_page == null){
-			_page = new FileConnectionProviderWizardPage();
-		}
-		return _page;
-	}
-
 	@Override
 	public String getName() {
 		// TODO Auto-generated method stub
@@ -27,7 +19,13 @@ public class FileConnectionProvider implements IConnectionProvider {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
-	
+
+	@Override
+	public IWizard getWizard() {
+		if(wizard == null){
+			wizard = new FileConnectionWizard();
+		}
+		return wizard;
+	}
 
 }

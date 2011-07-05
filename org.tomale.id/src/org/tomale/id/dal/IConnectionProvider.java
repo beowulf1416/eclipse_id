@@ -1,7 +1,6 @@
 package org.tomale.id.dal;
 
-import org.eclipse.jface.wizard.Wizard;
-import org.eclipse.jface.wizard.WizardPage;
+import org.eclipse.jface.wizard.IWizard;
 
 public interface IConnectionProvider {
 
@@ -9,6 +8,6 @@ public interface IConnectionProvider {
 	
 	public Object getConnection();
 	
-	public WizardPage getWizardPage();
+	public IWizard getWizard();
 	
 }
