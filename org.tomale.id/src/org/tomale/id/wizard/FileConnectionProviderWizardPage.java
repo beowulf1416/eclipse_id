@@ -13,10 +13,12 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Text;
 import org.tomale.id.Activator;
+import org.eclipse.swt.widgets.Label;
 
 public class FileConnectionProviderWizardPage extends WizardPage {
 	
 	private Text txtFile;
+	private Text txtName;
 
 	public FileConnectionProviderWizardPage(){
 		super("File connection provider page","File Connection Provider",Activator.getImageDescriptor("icons/file.jpg"));
@@ -30,15 +32,19 @@ public class FileConnectionProviderWizardPage extends WizardPage {
 
 		Composite container = new Composite(parent, SWT.NONE);
 		setControl(container);
-		container.setLayout(new GridLayout(1, false));
+		container.setLayout(new GridLayout(2, false));
 		
-		txtFile = new Text(container, SWT.BORDER);
-		txtFile.addModifyListener(new ModifyListener() {
+		Label lblName = new Label(container, SWT.NONE);
+		lblName.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
+		lblName.setText("Name");
+		
+		txtName = new Text(container, SWT.BORDER);
+		txtName.addModifyListener(new ModifyListener() {
 			public void modifyText(ModifyEvent e) {
-				setPageComplete(!txtFile.getText().isEmpty());
+				setPageComplete(!txtName.getText().isEmpty() && !txtFile.getText().isEmpty());
 			}
 		});
-		txtFile.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+		txtName.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
 		
 		Button btnBrowse = new Button(container, SWT.NONE);
 		btnBrowse.addSelectionListener(new SelectionAdapter() {
@@ -50,14 +56,22 @@ public class FileConnectionProviderWizardPage extends WizardPage {
 		});
 		btnBrowse.setText("Browse ...");
 		
+		txtFile = new Text(container, SWT.BORDER);
+		txtFile.addModifyListener(new ModifyListener() {
+			public void modifyText(ModifyEvent e) {
+				setPageComplete(!txtName.getText().isEmpty() && !txtFile.getText().isEmpty());
+			}
+		});
+		txtFile.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+		
+	}
+	
+	public String getProviderName(){
+		return txtName.getText();
 	}
 	
 	public String getFilename(){
 		return txtFile.getText();
-	}
-
-	public String getSettings() {
-		return "{filename=\"" + txtFile.getText() + "\"}";
 	}
 
 }

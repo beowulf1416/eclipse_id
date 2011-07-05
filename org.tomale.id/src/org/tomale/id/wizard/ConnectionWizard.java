@@ -33,6 +33,8 @@ public class ConnectionWizard extends Wizard implements INewWizard {
 			WizardDialog dialog = new WizardDialog(getShell(), wizard);
 			dialog.setTitle(wizard.getWindowTitle());
 			dialog.open();
+			
+			return true;
 		}
 		
 		return false;

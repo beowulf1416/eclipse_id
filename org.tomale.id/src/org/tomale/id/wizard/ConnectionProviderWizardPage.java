@@ -10,8 +10,6 @@ import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.ModifyEvent;
-import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.Image;
@@ -20,7 +18,6 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.List;
-import org.eclipse.swt.widgets.Text;
 import org.tomale.id.Activator;
 import org.tomale.id.dal.IConnectionProvider;
 
@@ -29,7 +26,6 @@ public class ConnectionProviderWizardPage extends WizardPage {
 	ListViewer _lstvwr;
 	
 	WizardPage _page;
-	private Text txtName;
 	
 	/**
 	 * Create the wizard.
@@ -55,14 +51,6 @@ public class ConnectionProviderWizardPage extends WizardPage {
 		lblName.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
 		lblName.setText("Name");
 		
-		txtName = new Text(container, SWT.BORDER);
-		txtName.addModifyListener(new ModifyListener() {
-			public void modifyText(ModifyEvent e) {
-				setPageComplete(!txtName.getText().isEmpty() && !_lstvwr.getSelection().isEmpty());
-			}
-		});
-		txtName.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
-		
 		_lstvwr = new ListViewer(container, SWT.BORDER | SWT.V_SCROLL);
 		_lstvwr.setContentProvider(new ConnectionContentProvider());
 		_lstvwr.setLabelProvider(new ConnectionLabelProvider());
@@ -71,14 +59,14 @@ public class ConnectionProviderWizardPage extends WizardPage {
 		lstProvider.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				setPageComplete(!txtName.getText().isEmpty() && !_lstvwr.getSelection().isEmpty());
+				setPageComplete(!_lstvwr.getSelection().isEmpty());
 			}
 		});
 		lstProvider.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1));
 
 		_lstvwr.setInput(Activator.getConnectionProviders());
+		_lstvwr.getList().setFocus();
 		
-		txtName.setFocus();
 	}
 	
 	public IConnectionProvider getSelectedProvider(){

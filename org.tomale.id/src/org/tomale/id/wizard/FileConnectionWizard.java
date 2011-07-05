@@ -1,6 +1,8 @@
 package org.tomale.id.wizard;
 
+import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.wizard.Wizard;
+import org.tomale.id.Activator;
 
 public class FileConnectionWizard extends Wizard {
 
@@ -16,7 +18,17 @@ public class FileConnectionWizard extends Wizard {
 
 	@Override
 	public boolean performFinish() {
-		// TODO Auto-generated method stub
+
+		String file = _page.getFilename();
+		String name = _page.getProviderName();
+		if(!file.isEmpty()){
+			
+			IPreferenceStore store = Activator.getDefault().getPreferenceStore();
+			store.setValue("provider.connection.file." + name, file);
+			
+			return true;
+		}
+		
 		return false;
 	}
 
