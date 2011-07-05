@@ -6,6 +6,8 @@ import org.tomale.id.wizard.FileConnectionWizard;
 
 public class FileConnectionProvider implements IConnectionProvider {
 
+	public static final String PROVIDER_ID = "org.tomale.id.provider.connection.file.FileConnectionProvider";
+	
 	FileConnectionWizard wizard;
 	
 	@Override

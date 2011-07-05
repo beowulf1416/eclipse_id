@@ -1,8 +1,12 @@
 package org.tomale.id.wizard;
 
-import org.eclipse.jface.preference.IPreferenceStore;
+import java.util.HashMap;
+
 import org.eclipse.jface.wizard.Wizard;
 import org.tomale.id.Activator;
+import org.tomale.id.dal.ConnectionContext;
+import org.tomale.id.dal.ConnectionManager;
+import org.tomale.id.provider.connection.file.FileConnectionProvider;
 
 public class FileConnectionWizard extends Wizard {
 
@@ -23,8 +27,16 @@ public class FileConnectionWizard extends Wizard {
 		String name = _page.getProviderName();
 		if(!file.isEmpty()){
 			
-			IPreferenceStore store = Activator.getDefault().getPreferenceStore();
-			store.setValue("provider.connection.file." + name, file);
+			HashMap<String, String> properties = new HashMap<String, String>();
+			properties.put("file", file);
+			
+			ConnectionManager mgr = Activator.getDefault().getConnectionManager();
+			mgr.addConnection(new ConnectionContext(FileConnectionProvider.PROVIDER_ID, name, 
+					"", 
+					"", 
+					properties
+					));
+			mgr.save();
 			
 			return true;
 		}

@@ -10,12 +10,15 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 import org.tomale.id.dal.ConnectionContext;
+import org.tomale.id.dal.ConnectionManager;
 
 /**
  * The activator class controls the plug-in life cycle
  */
 public class Activator extends AbstractUIPlugin {
 
+	ConnectionManager _cnmgr;
+	
 	HashMap<String, ConnectionContext> _connections = new HashMap<String, ConnectionContext>();
 	
 	// The plug-in ID
@@ -66,6 +69,13 @@ public class Activator extends AbstractUIPlugin {
 	 */
 	public static ImageDescriptor getImageDescriptor(String path) {
 		return imageDescriptorFromPlugin(PLUGIN_ID, path);
+	}
+	
+	public ConnectionManager getConnectionManager(){
+		if(_cnmgr == null){
+			_cnmgr = new ConnectionManager();
+		}
+		return _cnmgr;
 	}
 	
 	public HashMap<String, ConnectionContext> getConnections(){
