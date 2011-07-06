@@ -1,19 +1,21 @@
 package org.tomale.id.provider.connection.mysql;
 
+import org.eclipse.jface.wizard.IWizard;
 import org.eclipse.jface.wizard.WizardPage;
 import org.tomale.id.dal.IConnectionProvider;
+import org.tomale.id.provider.connection.mysql.wizard.MySQLConnectionWizard;
 import org.tomale.id.provider.connection.mysql.wizard.MySQLConnectionWizardPage;
 
 public class MySQLConnectionProvider implements IConnectionProvider {
 
-	MySQLConnectionWizardPage _page;
-	
+	MySQLConnectionWizard _wizard;
+
 	@Override
-	public WizardPage getWizardPage() {
-		if(_page == null){
-			_page = new MySQLConnectionWizardPage();
+	public IWizard getWizard() {
+		if(_wizard == null){
+			_wizard = new MySQLConnectionWizard();
 		}
-		return _page;
+		return _wizard;
 	}
 
 	public MySQLConnectionProvider() {
